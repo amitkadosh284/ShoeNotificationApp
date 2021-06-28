@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fragments_background"
+    tools:context=".ConditionFragment">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="174dp"
+        android:layout_height="121dp"
+        android:src="@drawable/logo_png"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="31dp"
+        tools:src="@drawable/logo_png"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:fontFamily="@font/abel"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"/>
+    <TextView
+        android:id="@+id/conditionInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/condition_instruction"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appName"
+        android:layout_marginTop="40dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/termsLayout"
+        android:layout_width="310dp"
+        android:layout_height="269dp"
+        app:layout_constraintTop_toBottomOf="@id/conditionInstruction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_corner">
+
+        <TextView
+            android:id="@+id/terms"
+            android:layout_width="261dp"
+            android:layout_height="180dp"
+            android:fontFamily="casual"
+            android:text="@string/terms"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/agreeButton"/>
+
+        <RadioButton
+            android:id="@+id/agreeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agree"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="30dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/continueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/termsLayout" />
+    <SeekBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="40dp"
+        android:max="5"
+        android:progress="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continueButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

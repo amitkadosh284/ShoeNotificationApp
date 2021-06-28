@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Shoe Notifications</string>
+    <string name="shoe">Shoe</string>
+    <string name="notifications">Notifications</string>
+    <string name="get_on_board">get on board</string>
+    <string name="age_instruction">Please insert your date of birth</string>
+    <string name="invalid_age">Sorry you must be 18 years old to use the app</string>
+    <string name="continueButton">continue</string>
+    <string name="condition_instruction">Please confirm the terms to continue</string>
+    <string name="terms">For agreeing this term, you agree that the company Shoe Notification can come into your house for taking notification from your shoes</string>
+    <string name="agree">I agree</string>
+    <string name="math_instruction">Please solve the next math equation. It very important for your shoes</string>
+    <string name="your_solution">your solution</string>
+    <string name="name_instruction">Please insert your name</string>
+    <string name="first_name">first name:</string>
+    <string name="last_name">last name:</string>
+    <string name="your_name">your name</string>
+    <string name="finish">finish</string>
+    <string name="invalid_sol">Your solution is incorrect</string>
+    <string name="invalid_name"><![CDATA[first & last names should be only english letters (a-z, bigger & lower cased)]]></string>
+    <string name="start">start</string>
+</resources>
