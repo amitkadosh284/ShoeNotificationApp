@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/first_fragment"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/first_fragment"
+        android:name="postpc.amitkadosh.shoenotifications.StartFragment"
+        android:label="@string/start"
+        tools:layout="@layout/start_fragment">
+
+        <action
+            android:id="@+id/action_start_to_age"
+            app:destination="@+id/age_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/age_fragment"
+        android:name="postpc.amitkadosh.shoenotifications.AgeFragment"
+        android:label="age"
+        tools:layout="@layout/age_fragment">
+
+        <action
+            android:id="@+id/action_age_fragment_to_conditionFragment"
+            app:destination="@id/conditionFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/conditionFragment"
+        android:name="postpc.amitkadosh.shoenotifications.ConditionFragment"
+        android:label="condition_fragment"
+        tools:layout="@layout/condition_fragment" >
+        <action
+            android:id="@+id/action_conditionFragment_to_mathFragment"
+            app:destination="@id/mathFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/mathFragment"
+        android:name="postpc.amitkadosh.shoenotifications.MathFragment"
+        android:label="MathFragment"
+        tools:layout="@layout/math_fragment">
+        <action
+            android:id="@+id/action_mathFragment_to_nameFragment"
+            app:destination="@id/nameFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="postpc.amitkadosh.shoenotifications.NameFragment"
+        android:label="NameFragment"
+        tools:layout="@layout/name_fragment"/>
+
+
+</navigation>
