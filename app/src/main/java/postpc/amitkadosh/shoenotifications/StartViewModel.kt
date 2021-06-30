@@ -4,5 +4,5 @@ import androidx.lifecycle.ViewModel
 
 
 class StartViewModel : ViewModel() {
-    var isDone: Boolean = false
+    val progress: Int = 1
 }

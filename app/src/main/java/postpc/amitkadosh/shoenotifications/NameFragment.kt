@@ -1,5 +1,6 @@
 package postpc.amitkadosh.shoenotifications
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
@@ -27,6 +28,9 @@ class NameFragment : Fragment() {
         ViewModelProvider(requireActivity()).get(NameViewModel::class.java)
     }
 
+    private var firstValid: Boolean = false
+    private var lastValid: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +41,7 @@ class NameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sharedViewModel.currFragment= FragmentType.NAME
+        sharedViewModel.setProgress(viewModel.progress)
         //finds view
         val firstName : EditText = view.findViewById(R.id.editFirst)
         val lastName : EditText = view.findViewById(R.id.editLast)
@@ -48,12 +52,14 @@ class NameFragment : Fragment() {
 
         setViews(firstName, lastName, continueButton, invalidName)
 
-        firstName.addTextChangedListener(object : TextWatcher {
+        lastName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (viewModel.updateFirstName(s.toString())){
+                if (viewModel.checkValidity(s.toString())){
+                    lastValid = true
                     setViews(firstName, lastName, continueButton, invalidName)
                 }
                 else{
+                    lastValid = false
                     setViewsWhenInvalid(continueButton, invalidName)
                 }
             }
@@ -67,10 +73,12 @@ class NameFragment : Fragment() {
 
         firstName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (viewModel.updateLastName(s.toString())){
+                if (viewModel.checkValidity(s.toString())){
+                    firstValid = true
                     setViews(firstName, lastName, continueButton, invalidName)
                 }
                 else{
+                    firstValid = false
                     setViewsWhenInvalid(continueButton, invalidName)
                 }
             }
@@ -83,7 +91,9 @@ class NameFragment : Fragment() {
         })
 
         continueButton.setOnClickListener {
-            //TODO
+            viewModel.firstName = firstName.text.toString()
+            viewModel.lastName = lastName.text.toString()
+            sharedViewModel.setProgress(0)
         }
 
 
@@ -106,12 +116,14 @@ class NameFragment : Fragment() {
         invalidName: TextView
     ) {
         if (viewModel.firstName != null) {
+            firstValid = true
             firstName.setText(viewModel.firstName)
         }
         if (viewModel.lastName != null) {
+            lastValid = true
             lastName.setText(viewModel.lastName)
         }
-        if (viewModel.firstName != null && viewModel.lastName != null) {
+        if (firstValid && lastValid) {
             continueButton.isEnabled = true
             continueButton.visibility = View.VISIBLE
             invalidName.visibility = View.GONE

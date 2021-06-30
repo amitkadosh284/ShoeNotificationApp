@@ -15,8 +15,13 @@ class StartFragment : Fragment() {
         fun newInstance() = StartFragment()
     }
 
-    private lateinit var shareViewModel: SharedViewModel
-    private lateinit var viewModel: StartViewModel
+    private val shareViewModel: SharedViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    }
+
+    private val model: StartViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(StartViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,10 +32,8 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        shareViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-        viewModel = ViewModelProvider(requireActivity()).get(StartViewModel::class.java)
 
-        shareViewModel.currFragment= FragmentType.START
+        shareViewModel.setProgress(model.progress)
         // find view
         val starButton: Button = view.findViewById(R.id.startButton)
 

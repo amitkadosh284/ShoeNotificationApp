@@ -56,7 +56,7 @@
 
         <TextView
             android:id="@+id/equation"
-            android:layout_width="261dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
             tools:text="3 * x = 9"
@@ -70,15 +70,30 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/solution"/>
 
+        <TextView
+            android:id="@+id/correctSolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="casual"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/equation"
+            tools:text="80" />
+
         <EditText
             android:id="@+id/solution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/your_solution"
             android:fontFamily="casual"
-            app:layout_constraintTop_toBottomOf="@id/equation"
+            android:hint="@string/your_solution"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/equation" />
 
         <TextView
             android:id="@+id/invalidSol"
@@ -94,6 +109,28 @@
             app:layout_constraintStart_toStartOf="parent"
              />
 
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/sendSol"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clickable="true"-->
+<!--            android:scaleType="center"-->
+<!--            android:src="@android:drawable/ic_menu_send"-->
+<!--            app:fabCustomSize="30dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/solution"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/solution"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/equation" />-->
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/successGif"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/vee"
+            app:layout_constraintBottom_toBottomOf="@+id/correctSolution"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/solution"
+            app:layout_constraintTop_toTopOf="@+id/correctSolution" />
 
 
 
@@ -109,16 +146,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mathLayout" />
 
-    <SeekBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="353dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="30dp"
-        android:max="5"
-        android:progress="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continueButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,12 @@
 package postpc.amitkadosh.shoenotifications
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,43 +17,37 @@ import androidx.navigation.fragment.findNavController
 class MainActivity : AppCompatActivity() {
     ;
 
-    private lateinit var model: SharedViewModel
+    private lateinit var sp: SharedPreferences
+    private val shareViewModel: SharedViewModel by lazy {
+        ViewModelProvider(this).get(SharedViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        model = ViewModelProvider(this).get(SharedViewModel::class.java)
+        sp = this.getSharedPreferences("on_board_progress", Context.MODE_PRIVATE)
+        if (sp.getBoolean("done", false)){
+            startAfterOnBoardActivity()
+        }
 
-//        if (sp.get)
-//        val intent = Intent(this, AfterOnBoard::class.java)
-//        startActivity(intent)
+        //finds view
+        val progressBar: ProgressBar = findViewById(R.id.progressBar)
+        progressBar.max = shareViewModel.max
+
+
+        shareViewModel.progressLiveData.observe(this, Observer { it->
+            if (it == 0){
+                startAfterOnBoardActivity()
+            }
+            else{
+                progressBar.progress = shareViewModel.progressLiveData.value!!
+            }
+        })
 
     }
 
-//    private fun openScreenByType(type: FragmentType){
-//        when(type){
-//            FragmentType.START -> loadFragment(StartFragment())
-//            FragmentType.AGE -> loadFragment(AgeFragment())
-//            FragmentType.TERMS -> loadFragment(ConditionFragment())
-//            FragmentType.MATH -> loadFragment(MathFragment())
-//            FragmentType.NAME -> loadFragment(NameFragment())
-//            FragmentType.DONE -> openAfterOnBoardActivity()
-//        }
-//
-//    }
-
-//    private fun loadFragment(fragment:Fragment){
-////        val transaction = supportFragmentManager.beginTransaction()
-////        transaction.replace(R.id.nav_host_fragment, fragment)
-////        transaction.disallowAddToBackStack()
-////        transaction.commit()
-//        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        val navController = navHost.findNavController()
-//        navController.navigate(action)
-//    }
-//
-//    private fun openAfterOnBoardActivity(){
-//        val intent = Intent(this, AfterOnBoard::class.java)
-//        startActivity(intent)
-//    }
+    private fun startAfterOnBoardActivity() {
+        val intent = Intent(this, AfterOnBoard::class.java)
+        startActivity(intent)
+    }
 }

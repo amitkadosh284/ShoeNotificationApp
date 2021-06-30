@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class ConditionViewModel : ViewModel() {
 
+    val progress: Int = 3
     var acceptTerms : Boolean = false
-    var isDone: Boolean = false
+
 }

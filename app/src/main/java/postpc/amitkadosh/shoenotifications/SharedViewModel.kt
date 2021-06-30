@@ -4,11 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-enum class FragmentType {
-    START, AGE, TERMS, MATH, NAME, DONE
-}
+
 
 class SharedViewModel : ViewModel() {
-    var currFragment: FragmentType? = null
+    val max: Int = 5
+    private val _progressLivaData: MutableLiveData<Int> = MutableLiveData()
+    val progressLiveData: LiveData<Int>
+        get() = _progressLivaData
 
+    fun setProgress(num: Int){
+        _progressLivaData.value = num
+    }
 }

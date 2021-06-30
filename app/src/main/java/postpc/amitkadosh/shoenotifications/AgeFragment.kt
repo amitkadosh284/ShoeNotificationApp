@@ -16,9 +16,12 @@ class AgeFragment : Fragment() {
     companion object {
         fun newInstance() = AgeFragment()
     }
-
-    private lateinit var viewModel: AgeFregmentViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    }
+    private val viewModel: AgeFragmentViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(AgeFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,10 +32,8 @@ class AgeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(AgeFregmentViewModel::class.java)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        sharedViewModel.currFragment = FragmentType.AGE
+        sharedViewModel.setProgress(viewModel.progress)
         //finds view
         val date : DatePicker = view.findViewById(R.id.datePicker)
         val invalidAge : TextView = view.findViewById(R.id.invalidAge)

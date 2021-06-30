@@ -16,8 +16,12 @@ class ConditionFragment : Fragment() {
         fun newInstance() = ConditionFragment()
     }
 
-    private lateinit var viewModel: ConditionViewModel
-    private lateinit var sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+    }
+    private val viewModel: ConditionViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(ConditionViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +32,8 @@ class ConditionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(ConditionViewModel::class.java)
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        sharedViewModel.currFragment = FragmentType.TERMS
+        sharedViewModel.setProgress(viewModel.progress)
         //find views
         val agreeButton : RadioButton = view.findViewById(R.id.agreeButton)
         val continueButton : Button = view.findViewById(R.id.continueButton)
