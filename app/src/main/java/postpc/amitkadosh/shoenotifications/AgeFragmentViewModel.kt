@@ -15,6 +15,9 @@ class AgeFragmentViewModel : ViewModel() {
     var bDay : Int = calender.get(Calendar.DAY_OF_MONTH)
     var age : Int? = null
 
+    /**
+     * function that set the date in the view model
+     */
     fun setDate(year: Int, month: Int, day: Int) {
         bYear = year
         bMonth = month
@@ -22,6 +25,9 @@ class AgeFragmentViewModel : ViewModel() {
         calculateAge()
     }
 
+    /**
+     * function that calculate the age of the user by the date of birth he insert
+     */
     private fun calculateAge() {
         if (cYear - bYear > 0){
             age = if (cMonth - bMonth > 0){

@@ -9,6 +9,9 @@ class NameViewModel : ViewModel() {
     var lastName : String? = null
 
 
+    /**
+     * function check if the input string is only english letters
+     */
     fun checkValidity(name: String): Boolean {
         for (c in name)
         {

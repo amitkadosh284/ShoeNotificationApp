@@ -33,6 +33,7 @@ class ConditionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //sets the progress bar in the main activity
         sharedViewModel.setProgress(viewModel.progress)
         //find views
         val agreeButton : RadioButton = view.findViewById(R.id.agreeButton)
@@ -51,6 +52,9 @@ class ConditionFragment : Fragment() {
         }
     }
 
+    /**
+     * function sets all the views
+     */
     private fun setViews(
         agreeButton: RadioButton,
         continueButton: Button

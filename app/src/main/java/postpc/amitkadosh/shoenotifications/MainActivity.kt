@@ -36,7 +36,10 @@ class MainActivity : AppCompatActivity() {
 
 
         shareViewModel.progressLiveData.observe(this, Observer { it->
-            if (it == 0){
+            if (it == 0){ // if it finish on boarding
+                val editor = sp.edit()
+                editor.putBoolean("done", true)
+                editor.apply()
                 startAfterOnBoardActivity()
             }
             else{
@@ -46,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * this function opens the after on board activity
+     */
     private fun startAfterOnBoardActivity() {
         val intent = Intent(this, AfterOnBoard::class.java)
         startActivity(intent)

@@ -11,6 +11,9 @@ class MathViewModel : ViewModel() {
     var solution: String? = null
     private var correctSol: Int = 0
 
+    /**
+     * this function generate a random math equation and calculate is solution for comparing
+     */
     fun generateEquation(): String{
         val num1: Int = Random.nextInt(1,10)
         val num2: Int = Random.nextInt(1, 10)
@@ -51,6 +54,10 @@ class MathViewModel : ViewModel() {
         return equation
     }
 
+    /**
+     * this function check if the input string is the solution to the equation
+     * and update the solution if it true
+     */
     fun updateSolution(sol: String) : Boolean{
         try{
             if (sol.toInt() == correctSol){

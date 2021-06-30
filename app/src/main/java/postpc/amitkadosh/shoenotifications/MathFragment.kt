@@ -47,7 +47,6 @@ class MathFragment : Fragment() {
         val solution: EditText = view.findViewById(R.id.solution)
         val invalidSol: TextView = view.findViewById(R.id.invalidSol)
         val continueButton: Button = view.findViewById(R.id.continueButton)
-//        val sendSolButton: FloatingActionButton = view.findViewById(R.id.sendSol)
         val correctSol: TextView = view.findViewById(R.id.correctSolution)
         val successGif: GifImageView = view.findViewById(R.id.successGif)
 
@@ -77,7 +76,9 @@ class MathFragment : Fragment() {
     }
 
 
-
+    /**
+     * this function sets the views
+     */
     private fun setViews(
         equation: TextView,
         solution: EditText,
@@ -86,11 +87,9 @@ class MathFragment : Fragment() {
         correctSol: TextView,
         successGif: GifImageView
     ) {
-        equation.text = viewModel.equation
-        if (viewModel.solution != null){
+        equation.text = viewModel.equation // sets the equation some equation all the time
+        if (viewModel.solution != null){ // if it the first time in this fragment
             solution.visibility = View.GONE
-//            sendSolButton.isEnabled = false
-//            sendSolButton.visibility = View.GONE
             invalidSol.visibility = View.GONE
             continueButton.isEnabled = true
             continueButton.visibility = View.VISIBLE
@@ -100,30 +99,23 @@ class MathFragment : Fragment() {
         }
         else{
             val sol: String = solution.text.toString()
-            if(sol.isEmpty()){
+            if(sol.isEmpty()){ //if there is no solution yet
                 solution.visibility = View.VISIBLE
-//            sendSolButton.isEnabled = true
-//            sendSolButton.visibility = View.VISIBLE
                 invalidSol.visibility = View.GONE
                 continueButton.isEnabled = false
                 continueButton.visibility = View.GONE
                 correctSol.visibility = View.GONE
                 successGif.visibility = View.GONE
             }
-            else if (!viewModel.updateSolution(sol)) {
+            else if (!viewModel.updateSolution(sol)) { //if the solution is incorrect
                 solution.visibility = View.VISIBLE
-//            sendSolButton.isEnabled = true
-//            sendSolButton.visibility = View.VISIBLE
                 invalidSol.visibility = View.VISIBLE
                 continueButton.isEnabled = false
                 continueButton.visibility = View.GONE
                 correctSol.visibility = View.GONE
                 successGif.visibility = View.GONE
             } else {
-                Log.d("enter correct sol", sol)
-                solution.visibility = View.GONE
-//            sendSolButton.isEnabled = false
-//            sendSolButton.visibility = View.GONE
+                solution.visibility = View.GONE //if the solution is correct
                 invalidSol.visibility = View.GONE
                 continueButton.isEnabled = true
                 continueButton.visibility = View.VISIBLE

@@ -52,14 +52,14 @@ class NameFragment : Fragment() {
 
         setViews(firstName, lastName, continueButton, invalidName)
 
-        lastName.addTextChangedListener(object : TextWatcher {
+        firstName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (viewModel.checkValidity(s.toString())){
-                    lastValid = true
+                    firstValid = true
                     setViews(firstName, lastName, continueButton, invalidName)
                 }
                 else{
-                    lastValid = false
+                    firstValid = false
                     setViewsWhenInvalid(continueButton, invalidName)
                 }
             }
@@ -71,14 +71,14 @@ class NameFragment : Fragment() {
             }
         })
 
-        firstName.addTextChangedListener(object : TextWatcher {
+        lastName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (viewModel.checkValidity(s.toString())){
-                    firstValid = true
+                    lastValid = true
                     setViews(firstName, lastName, continueButton, invalidName)
                 }
                 else{
-                    firstValid = false
+                    lastValid = false
                     setViewsWhenInvalid(continueButton, invalidName)
                 }
             }
@@ -100,6 +100,9 @@ class NameFragment : Fragment() {
     }
 
 
+    /**
+     * sets the views if the name is invalid
+     */
     private fun setViewsWhenInvalid(
         continueButton: Button,
         invalidName: TextView
@@ -109,6 +112,9 @@ class NameFragment : Fragment() {
         invalidName.visibility = View.VISIBLE
     }
 
+    /**
+     * sets the views if valid name or if it the first time in fragment
+     */
     private fun setViews(
         firstName: EditText,
         lastName: EditText,

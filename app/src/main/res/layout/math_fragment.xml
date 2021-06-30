@@ -109,19 +109,6 @@
             app:layout_constraintStart_toStartOf="parent"
              />
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/sendSol"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:clickable="true"-->
-<!--            android:scaleType="center"-->
-<!--            android:src="@android:drawable/ic_menu_send"-->
-<!--            app:fabCustomSize="30dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/solution"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/solution"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/equation" />-->
-
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/successGif"
             android:layout_width="48dp"
